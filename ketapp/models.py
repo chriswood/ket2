@@ -9,6 +9,9 @@ class User(models.Model):
     username = models.CharField('username', max_length=20, validators=[MinValueValidator(3)])
     password = models.CharField('password', max_length=50, validators=[MinValueValidator(4)])
 
+    class Meta:
+        db_table = 'users'
+
 class UserForm(ModelForm):
     class Meta:
         model = User

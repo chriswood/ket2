@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-{% include 'head.html' %}
+  {% include 'head.html' %}
   <body>
-    <div class="container">
-      <div class='title'>{{ title }}</div>
-      <img src="{{STATIC_URL}}images/header.jpg" width=1024px>
-    </div>
-    <div class='login'>
-    {% if not logged_in %}
-       not log
-    {% else %}
-      logged
-    {% endif %}
-    {% block body %}
-    {% endblock %}
-    </div>
-    <div class="footer center">
-      &copy; Copyright 2015 by CHRIS WOOD LUXURIANT ENTERPRISES
-    </div>
+      <div id="header">
+        <div class='title'>{{ title }}</div>
+        <img src="{{STATIC_URL}}images/header.jpg" width=1024px>
+      </div>
+      <div id='content'>
+        <div class="menu">
+          <div class="item"><a href="/">home</a></div> | 
+          <div class="item"><a href="/post/create">create post</a></div> |
+          <div class="item"><a href="/user/create">register</a></div>
+        </div>
+        {% block body %}
+        {% endblock %}
+      </div>
+      <div id="footer">
+        &copy; Copyright 2015 by CHRIS WOOD LUXURIANT ENTERPRISES
+      </div>
   </body>
 </html>

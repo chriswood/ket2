@@ -15,6 +15,7 @@ def user(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
+            form.save()
             return HttpResponseRedirect('/')
     else:
         form = UserForm()

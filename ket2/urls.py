@@ -8,5 +8,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'ketapp.views.index'),
-    url(r'^user/', 'ketapp.views.user'),
+    url(r'^user/create', 'ketapp.views.user'),
 )
