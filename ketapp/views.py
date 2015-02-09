@@ -51,7 +51,7 @@ def register_success(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/')
 
 def post(request):
     # see if user is not anonymous
