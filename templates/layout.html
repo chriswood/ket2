@@ -13,7 +13,7 @@
           <div class="item"><a href="/user/create">register</a></div> |
           <div class="item"><a href="/user/edit">edit your info</a></div>
         </div>
-        <div class=''>Logged in as {{ user }}</div>
+        <div class='UserDisplay'>{{ user_display | safe }}</div>
         {% block body %}
         {% endblock %}
       </div>

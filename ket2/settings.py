@@ -68,7 +68,6 @@ WSGI_APPLICATION = 'ket2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': os.path.join(DB_PATH, 'db.sqlite3'),
     }
 }
@@ -87,9 +86,9 @@ USE_L10N = True
 USE_TZ = True
 
 #default redirect for a user not logged in
-#import django.contrib.auth
-#django.contrib.auth.LOGIN_URL = '/'
-
+import django.contrib.auth
+django.contrib.auth.LOGIN_URL = '/login'
+LOGIN_URL = '/login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
@@ -100,6 +99,16 @@ STATICFILES_DIRS = (
     BASE_DIR + '/static',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+#    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'ket2.context_processors.UserDisplay',
+)
 
 
 

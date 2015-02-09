@@ -7,12 +7,14 @@ from django.contrib.auth import logout, get_user, get_user_model
 from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request):
     context = {
         'title': 'home',
         'user': request.user.username,
     }
-    return render(request, 'index.html', context)
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
+    #return render(request, 'index.html', context)
 
 def user(request):
     if request.method == 'POST':
@@ -47,9 +49,9 @@ def register_success(request):
     context = {'title': 'user stuff', 'user': request.user}
     return render(request, 'registered.html', context)
 
-def logout_view():
+def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/login')
 
 def post(request):
     # see if user is not anonymous
