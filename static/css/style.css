@@ -57,7 +57,10 @@ label {
     display: inline;
     text-decoration: underline;
 }
-
+input {
+  display: inline-block;
+  float: left;
+}
 
 
 

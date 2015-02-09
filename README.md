@@ -8,7 +8,7 @@ take special feedback posts
 Add /feedback view listing all feedback posts 
 Add growl type notifications, or something 
 add information section/"coming soon" 
-make user form error display not jump to top on error 
+X - make user form error display not jump to top on error 
 implement posts
 add delete button to post for post owner 
 display all posts
@@ -25,6 +25,7 @@ AVATARS!!!
 round off post corners or something it's tacky 
 add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
+move anonymous check to decorator ro something
 
 X - Handle login/session
 X - add validated user to session

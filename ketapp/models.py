@@ -1,6 +1,6 @@
 from django.db.models import CharField, EmailField, TextField, DateTimeField, ForeignKey, Model
 from django.core.validators import validate_email, MinValueValidator
-from django.forms import ModelForm
+from django.forms import ModelForm, PasswordInput
 
 class User(Model):
     firstname = CharField('first name', max_length=40)
@@ -16,12 +16,21 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = '__all__'
-        #exclude = ['title']
+        widgets = {
+            'password': PasswordInput(),
+        }
 
 class Post(Model):
-    userid = ForeignKey(User, related_name='userid')
+    userid = ForeignKey(User)
     title = CharField('title', max_length=80)
     message = TextField('message', max_length=500)
     created = DateTimeField(auto_now_add=True)
     last_edited = DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'posts'
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['created', 'last_edited', 'userid']
