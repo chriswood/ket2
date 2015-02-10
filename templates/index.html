@@ -1,5 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ stuff }}
+<div class="split">
+    <div class="floatleft">
+      <table class="posts_container">
+        {% for post in posts %}
+          <tr>
+            <td class="avatar">ChrisWood</td>
+            <td class="message"><div class='postheader'>{{ post.title }}</div>{{ post.message }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div class="floatright">Page info goes here.</div>
+    <div style="clear: both;">
+</div>
 {% endblock %}

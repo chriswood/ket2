@@ -1,20 +1,21 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from models import UserForm, Post, PostForm
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, get_user, get_user_model
 from django.contrib.auth.decorators import login_required
-
+from ketapp.models import UserForm, Post, PostForm
 
 @login_required
 def index(request):
+    '''Display recent posts and site info/announcements.'''
+    posts = Post.objects.all()
     context = {
         'title': 'home',
         'user': request.user.username,
+        'posts': posts,
     }
     return render_to_response('index.html', context, context_instance=RequestContext(request))
-    #return render(request, 'index.html', context)
 
 def user(request):
     if request.method == 'POST':
