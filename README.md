@@ -50,6 +50,18 @@ Future ideas for app:
 -maybe have design/stationery templates for emails/pages 
 -Give everyone a way to make todo lists
 
+Run in shell..
+import os
+import sys
+import django
+import ket2
+sys.path.append('/home/chris/code/ket2')
+sys.path.append('/home/chris/code/ket2/ket2')
+sys.path.append('/home/chris/code/ket2/ketapp')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+django.setup()
+
+
 -----APACHE CONF
 domain: kiteeatingtree.org
 public: /var/www/kiteeatingtree.org/public_html/

@@ -6,7 +6,7 @@
       <table class="posts_container">
         {% for post in posts %}
           <tr>
-            <td class="avatar">ChrisWood</td>
+            <td class="avatar">{{ post.user }}</td>
             <td class="message"><div class='postheader'>{{ post.title }}</div>{{ post.message }}</td>
           </tr>
         {% endfor %}

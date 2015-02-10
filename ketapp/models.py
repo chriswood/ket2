@@ -1,8 +1,11 @@
-from django.db.models import CharField, EmailField, TextField, DateTimeField, ForeignKey, Model
+from django.db.models import CharField, EmailField, TextField
+from django.db.models import DateTimeField, ForeignKey, Model
 from django.core.validators import validate_email, MinValueValidator
 from django.forms import ModelForm, PasswordInput
+from django.contrib.auth.models import User
 
-class User(Model):
+#  USE auth_users!!!!!!!!! #
+class UserCustom(Model):
     firstname = CharField('first name', max_length=40)
     lastname = CharField('last name', max_length=40)
     email = EmailField('email', max_length=100, validators=[validate_email])
@@ -10,11 +13,11 @@ class User(Model):
     password = CharField('password', max_length=50, validators=[MinValueValidator(4)])
 
     class Meta:
-        db_table = 'users'
+        db_table = 'users_custom'
 
 class UserForm(ModelForm):
     class Meta:
-        model = User
+        model = UserCustom
         fields = '__all__'
         widgets = {
             'password': PasswordInput(),

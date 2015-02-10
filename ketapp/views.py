@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import logout, get_user, get_user_model
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from ketapp.models import UserForm, Post, PostForm
 
@@ -10,12 +10,14 @@ from ketapp.models import UserForm, Post, PostForm
 def index(request):
     '''Display recent posts and site info/announcements.'''
     posts = Post.objects.all()
+
     context = {
         'title': 'home',
         'user': request.user.username,
         'posts': posts,
     }
-    return render_to_response('index.html', context, context_instance=RequestContext(request))
+    return render_to_response('index.html', context,
+                              context_instance=RequestContext(request))
 
 def user(request):
     if request.method == 'POST':
@@ -36,7 +38,6 @@ def user_edit(request):
     if request.method == 'POST':
         form = 3
         if form.is_valid():
-            q=1
             return HttpResponseRedirect('/user/edit')
     else:
         cur_user = request.user
@@ -69,6 +70,5 @@ def post(request):
             return HttpResponseRedirect('/')
     else:
         form = PostForm()
-    context={'title': 'create post', 'user': request.user, 'form': form}
+    context = {'title': 'create post', 'user': request.user, 'form': form}
     return render(request, 'post.html', context)
-
