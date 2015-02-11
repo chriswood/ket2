@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from ketapp.models import UserForm, Post, PostForm
+from ketapp.models import UserForm, UserEditForm, Post, PostForm
 from ket2.settings import POST_DISPLAY_LIMIT
 
 @login_required
@@ -24,6 +24,8 @@ def user(request):
         form = UserForm(request.POST)
         if form.is_valid():
             user = User.objects.create_user(
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name'],
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password'],
                 email=form.cleaned_data['email']
@@ -32,20 +34,20 @@ def user(request):
     else:
         form = UserForm()
     context = {'title': 'user stuff', 'form': form}
-    return render(request, 'user.html', context)
+    return render(request, 'ket_forms/user.html', context)
 
 def user_edit(request):
     if request.method == 'POST':
-        form = 3
+        form = UserEditForm(request.POST, instance=request.user)
         if form.is_valid():
+            form.save()
             return HttpResponseRedirect('/user/edit')
     else:
         cur_user = request.user
         cur_user = User.objects.get(username=cur_user.username)
-        #data = {cur_user.}
-        form = UserForm(instance=cur_user)
-        context = {'form': form, 'title': 'edit user'}
-        return render(request, 'user.html', context)
+        form = UserEditForm(instance=cur_user)
+    context = {'form': form, 'title': 'edit user'}
+    return render(request, 'ket_forms/user_edit.html', context)
 
 def register_success(request):
     context = {'title': 'user stuff', 'user': request.user}
@@ -71,4 +73,4 @@ def post(request):
     else:
         form = PostForm()
     context = {'title': 'create post', 'user': request.user, 'form': form}
-    return render(request, 'post.html', context)
+    return render(request, 'ket_forms/post.html', context)

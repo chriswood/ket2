@@ -15,10 +15,15 @@ class UserCustom(Model):
     class Meta:
         db_table = 'users_custom'
 
+class UserEditForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username']
+
 class UserForm(ModelForm):
     class Meta:
-        model = UserCustom
-        fields = '__all__'
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username', 'password']
         widgets = {
             'password': PasswordInput(),
         }
