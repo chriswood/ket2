@@ -7,7 +7,7 @@ TODO: (not prioritized, X = done)
 take special feedback posts 
 Add /feedback view listing all feedback posts 
 Add growl type notifications, or something 
-add information section/"coming soon" 
+X - add information section/"coming soon" 
 X - make user form error display not jump to top on error 
 implement posts
 add delete button to post for post owner 

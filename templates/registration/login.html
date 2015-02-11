@@ -1,15 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    {% if form.errors %}
-      <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-    <form method="post" action=".">
-      <table border="0" class="form">
+  {% if form.errors %}
+    <p class='error'>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+    <table border="0" class="form">
+      <form method="post" action=".">
         {% csrf_token %}
         {{ form.as_table}}
-        <tr><td colspan="2"><input type="submit" value="login" /></td></tr>
-        <input type="hidden" name="next" value="/" />
-      </table>
-    </form>
+        <tr>
+          <td colspan="2"><input type="submit" value="login" /></td>
+        </tr>
+      </form>
+      <tr>
+        <td colspan=2>Click register to create an account if you haven't signed up yet.</td>
+      </tr>
+    </table>
 {% endblock %}

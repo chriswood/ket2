@@ -61,7 +61,6 @@ ROOT_URLCONF = 'ket2.urls'
 
 WSGI_APPLICATION = 'ket2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -89,7 +88,7 @@ USE_TZ = True
 import django.contrib.auth
 django.contrib.auth.LOGIN_URL = '/login'
 LOGIN_URL = '/login'
-
+LOGIN_REDIRECT_URL = '/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
@@ -110,5 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'ket2.context_processors.UserDisplay',
 )
 
+# Number to display by default
+POST_DISPLAY_LIMIT = 10
 
 

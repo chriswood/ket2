@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from ketapp.models import UserForm, Post, PostForm
+from ket2.settings import POST_DISPLAY_LIMIT
 
 @login_required
 def index(request):
     '''Display recent posts and site info/announcements.'''
-    posts = Post.objects.all()
-
+    posts = Post.objects.order_by('-last_edited').all()[:POST_DISPLAY_LIMIT]
     context = {
         'title': 'home',
         'user': request.user.username,

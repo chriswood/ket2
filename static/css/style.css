@@ -21,6 +21,7 @@ input {
     position: relative;
 }
 #content {
+    color: #EFF4EE;
 }
 #footer {
     clear: both;
@@ -43,14 +44,24 @@ input {
     margin-right: auto;
     width: 98%;
 }
+
+/* forms */
 .errorlist {
+    padding: 0px;
+    text-align: right;
     color: red;
+    margin: 0px;
 }
 .form {
     float: left;
-    width: 400px;
+    width: 600px;
     color: #EFF4EE;
 }
+.form_labels {
+    width: 130px;
+}
+
+/* nav menu */
 .menu {
     text-align: center;
     color: #EFF4EE;
