@@ -44,6 +44,12 @@ input, textarea {
     margin-right: auto;
     width: 98%;
 }
+.UserDisplay {
+    font-style: italic;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: bottom;
+}
 
 /* forms */
 .errorlist {

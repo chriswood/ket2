@@ -4,14 +4,11 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
 TODO: (not prioritized, X = done) 
+view past/all posts (currently just last 10)
 take special feedback posts 
 Add /feedback view listing all feedback posts 
 Add growl type notifications, or something 
-X - add information section/"coming soon" 
-X - make user form error display not jump to top on error 
-implement posts
 add delete button to post for post owner 
-display all posts
 display posts per user 
 let user edit his posts 
 implement picture sharing 
@@ -19,14 +16,20 @@ add password edit feature
 add send someone a private message 
 add send a request to admin 
 add email user/users feature 
-write bash script to rsync with server and touch wsgi file
-add admin section with view/edit users function 
 AVATARS!!! 
-round off post corners or something it's tacky 
 add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
 move anonymous check to decorator ro something
+Have homepage display list of who is logged in
+Revisit "logged in as" thing
 
+X- add admin section with view/edit users function 
+X - write bash script to rsync with server and touch wsgi file
+X- implement posts
+X - display all posts
+X- round off post corners or something it's tacky 
+X - add information section/"coming soon" 
+X - make user form error display not jump to top on error 
 X - Handle login/session
 X - add validated user to session
 X - check for validated user
