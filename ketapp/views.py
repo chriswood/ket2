@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from ketapp.models import UserForm, UserEditForm, Post, PostForm
 from ket2.settings import POST_DISPLAY_LIMIT
 
+
 @login_required
 def index(request):
     '''Display recent posts and site info/announcements.'''

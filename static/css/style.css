@@ -13,7 +13,7 @@ a, h1 {
 label {
     float: left;
 }
-input {
+input, textarea {
     display: inline-block;
     float: left;
 }

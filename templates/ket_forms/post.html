@@ -3,9 +3,11 @@
 {% block body %}
 <div class="form">
   <form action="/post/create/" method="post">
-    <table border="0" class="form">
+    <table class="form">
       {% csrf_token %}
-      {{ form.as_table }}
+      {% for field in form %}
+        <tr><th class="form_labels">{{ field.label_tag }}</th><td>{{ field }} {{ field.errors }}</td></tr>
+      {% endfor %}
       <tr><td colspan="2"><input type="submit" value="create post" /></td></tr>
     </table>
   </form>

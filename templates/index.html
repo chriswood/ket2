@@ -7,7 +7,7 @@
         {% for post in posts %}
           <tr>
             <td class="avatar">{{ post.userid.username }}</td>
-            <td class="message"><div class='postheader'>{{ post.title }}</div>{{ post.message }}</td>
+            <td class="message"><div class='postheader'>{{ post.title }}</div>{{ post.message|striptags|linebreaks }}</td>
           </tr>
         {% endfor %}
       </table>
