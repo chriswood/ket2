@@ -8,6 +8,7 @@ $(document).ready(function() {
         $("#loading-indicator_" + post_id).fadeOut(1700);
     });
     $(".tooltip.delete").click(function() {
+        //var page_y = $( document ).scrollTop();
         var id = $(this).attr('id');
         var request = $.ajax({
             url: "/post/delete",
@@ -17,8 +18,8 @@ $(document).ready(function() {
             dataType: 'json'
         });
         request.done(function(msg) {
-            //$( "#log" ).html( msg );
-            window.location.reload();
+            location.reload();
+            //$(document).scrollTop(page_y);
         });
         request.fail(function(jqXHR, textStatus) {
             alert( "Request failed: " + textStatus );
