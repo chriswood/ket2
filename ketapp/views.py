@@ -1,17 +1,19 @@
 from django.shortcuts import render, render_to_response
+from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from ketapp.models import UserForm, UserEditForm, Post, PostForm
 from ket2.settings import POST_DISPLAY_LIMIT
+import json
 
 
 @login_required
 def index(request):
     '''Display recent posts and site info/announcements.'''
-    posts = Post.objects.order_by('-last_edited').all()[:POST_DISPLAY_LIMIT]
+    posts = Post.objects.filter(deleted=False).order_by('-last_edited').all()[:POST_DISPLAY_LIMIT]
     context = {
         'title': 'home',
         'user': request.user.username,
@@ -75,3 +77,18 @@ def post(request):
         form = PostForm()
     context = {'title': 'create post', 'user': request.user, 'form': form}
     return render(request, 'ket_forms/post.html', context)
+
+@csrf_exempt
+def post_delete(request):
+    ''' ajax call '''
+    #Post.objects.filter(id=post_id).update(deleted=True)
+    post_id = request.POST['post_id']
+    try:
+        obj = Post.objects.get(id=post_id)
+        obj.deleted=True
+        obj.save()
+        return_dict = {'success': True, 'message': 'post deleted'}
+    except Post.DoesNotExist:
+        return_dict = {'success': False, 'message': 'post not found'}
+    json_data = json.dumps(return_dict)
+    return HttpResponse(json_data, content_type='application/javascript')

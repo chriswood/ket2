@@ -1,4 +1,4 @@
-from django.db.models import CharField, EmailField, TextField
+from django.db.models import CharField, EmailField, TextField, BooleanField
 from django.db.models import DateTimeField, ForeignKey, Model
 from django.core.validators import validate_email, MinValueValidator
 from django.forms import ModelForm, PasswordInput
@@ -34,6 +34,7 @@ class Post(Model):
     message = TextField('message', max_length=500)
     created = DateTimeField(auto_now_add=True)
     last_edited = DateTimeField(auto_now=True)
+    deleted = BooleanField(default=False)
 
     class Meta:
         db_table = 'posts'
@@ -41,4 +42,4 @@ class Post(Model):
 class PostForm(ModelForm):
     class Meta:
         model = Post
-        exclude = ['created', 'last_edited', 'userid']
+        exclude = ['created', 'last_edited', 'userid', 'deleted']

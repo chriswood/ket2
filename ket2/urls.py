@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from ketapp.views import user, register_success, logout_view, post, user_edit
+from ketapp.views import post_delete
 
 urlpatterns = patterns('',
     # Examples:
@@ -11,7 +12,8 @@ urlpatterns = patterns('',
     url(r'^login/', 'django.contrib.auth.views.login'),
     url(r'^logout/', logout_view),
     url(r'^user/create', user),
+    url(r'^user/edit', user_edit),
     url(r'^user/success', register_success),
     url(r'^post/create', post),
-    url(r'^user/edit', user_edit),
+    url(r'^post/delete', post_delete),
 )

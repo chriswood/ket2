@@ -3,7 +3,8 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
-TODO: (not prioritized, X = done) 
+TODO: (not prioritized, X = done)
+GET RID OF CDN if I'm going to use font awesome. WAY too slow
 view past/all posts (currently just last 10)
 take special feedback posts 
 Add /feedback view listing all feedback posts 
@@ -21,8 +22,8 @@ add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
 move anonymous check to decorator ro something
 Have homepage display list of who is logged in
-Revisit "logged in as" thing
 
+X - Revisit "logged in as" thing
 X- add admin section with view/edit users function 
 X - write bash script to rsync with server and touch wsgi file
 X- implement posts
