@@ -164,7 +164,7 @@ a.tooltip span {
 }
 
 /* ajax call indicator */
-#loading-indicator {
+.loading_icon {
   position: relative;
   left: 10px;
   top: 10px;

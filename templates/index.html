@@ -14,7 +14,7 @@
                 <a href="#" class="tooltip delete" post_id="{{ post.id }}">
                   <i class="fa fa-trash-o fa-fw"></i><span>delete this post</span>
                 </a>
-                <img height='48' width='48' src="/static/images/pacman.gif" id="loading-indicator_{{ post.id }}" style="display:none" />
+                <img height='48' width='48' src="/static/images/pacman.gif" class="loading_icon" id="loading-indicator_{{ post.id }}" style="display:none" />
                 | <a href="/post/edit/{{ post.id }}" class="tooltip edit" post_id="{{ post.id }}"><i class="fa fa-edit"></i><span>edit this post</span>
                 </a>
               {% endifequal %}
