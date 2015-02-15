@@ -12,9 +12,10 @@ import json
 
 
 @login_required
-def index(request):
+def index(request, p_count=None):
     '''Display recent posts and site info/announcements.'''
-    posts = Post.objects.filter(deleted=False).order_by('-last_edited').all()[:POST_DISPLAY_LIMIT]
+    p_limit = p_count if p_count else POST_DISPLAY_LIMIT
+    posts = Post.objects.filter(deleted=False).order_by('-last_edited').all()[:p_limit]
     context = {
         'title': 'home',
         'user': request.user.username,
