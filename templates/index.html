@@ -10,11 +10,14 @@
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
               {{ post.message|striptags|linebreaks }}
-              <a href="#" class="tooltip delete" id="{{ post.id }}">
-                <i class="fa fa-close"></i><span>delete this post</span>
-              </a>
-              <img height='48' width='48' src="/static/images/pacman.gif" id="loading-indicator_{{ post.id }}" style="display:none" />
-                <!-- | <i class="fa fa-edit"></i> -->
+              {% ifequal user post.userid.username %}
+                <a href="#" class="tooltip delete" post_id="{{ post.id }}">
+                  <i class="fa fa-trash-o fa-fw"></i><span>delete this post</span>
+                </a>
+                <img height='48' width='48' src="/static/images/pacman.gif" id="loading-indicator_{{ post.id }}" style="display:none" />
+                | <a href="/post/edit/{{ post.id }}" class="tooltip edit" post_id="{{ post.id }}"><i class="fa fa-edit"></i><span>edit this post</span>
+                </a>
+              {% endifequal %}
             </td>
           </tr>
         {% endfor %}

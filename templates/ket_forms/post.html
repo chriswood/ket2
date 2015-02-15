@@ -2,13 +2,16 @@
 
 {% block body %}
 <div class="form">
-  <form action="/post/create/" method="post">
+  <form action="/post/{{ verb }}/" method="post">
     <table class="form">
       {% csrf_token %}
+      {% if verb == 'edit' %}
+          <input type='hidden' name='p_id' value="{{ p_id }}" />
+      {% endif %}
       {% for field in form %}
         <tr><th class="form_labels">{{ field.label_tag }}</th><td>{{ field }} {{ field.errors }}</td></tr>
       {% endfor %}
-      <tr><td colspan="2"><input type="submit" value="create post" /></td></tr>
+      <tr><td colspan="2"><input type="submit" value="{{ button_text }}" /></td></tr>
     </table>
   </form>
 </div>

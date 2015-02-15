@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from ketapp.models import UserForm, UserEditForm, Post, PostForm
 from ket2.settings import POST_DISPLAY_LIMIT
 import json
@@ -75,7 +76,12 @@ def post(request):
             return HttpResponseRedirect('/')
     else:
         form = PostForm()
-    context = {'title': 'create post', 'user': request.user, 'form': form}
+    context = {
+        'title': 'create post',
+        'user': request.user,
+        'form': form,
+        'button_text': 'create post',
+        'verb': 'create'}
     return render(request, 'ket_forms/post.html', context)
 
 @csrf_exempt
@@ -92,3 +98,30 @@ def post_delete(request):
         return_dict = {'success': False, 'message': 'post not found'}
     json_data = json.dumps(return_dict)
     return HttpResponse(json_data, content_type='application/javascript')
+
+@login_required
+def post_edit(request, p_id=None):
+    ''' View checks to make sure post belongs to current user. '''
+    user_id = request.user.id
+    if request.method == 'POST':
+        p_id = request.POST['p_id']
+        post = Post.objects.get(id=p_id)
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    elif p_id:
+        post = Post.objects.get(id=p_id)
+        if user_id == post.userid.id:
+            form = PostForm(instance=post)
+        else:
+            raise PermissionDenied
+    context = {
+        'form': form,
+        'title': 'edit post',
+        'user': request.user,
+        'button_text': 'save changes',
+        'verb': 'edit',
+        'p_id': p_id,
+    }
+    return render(request, 'ket_forms/post.html', context)

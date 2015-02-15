@@ -10,6 +10,8 @@ body {
 a, h1 {
     color: #EFF4EE;
 }
+a.delete, a.edit {color: #232323;}
+
 label {
     float: left;
 }
@@ -127,7 +129,10 @@ input, textarea {
 }
 
 /* tooltips */
-a.tooltip {outline: none; }
+a.tooltip {
+    outline: none;
+    text-decoration: none;
+}
 a.tooltip strong {line-height: 20px;}
 a.tooltip:hover {text-decoration: none;}
 a.tooltip span {

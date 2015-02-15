@@ -9,7 +9,8 @@ $(document).ready(function() {
     });
     $(".tooltip.delete").click(function() {
         //var page_y = $( document ).scrollTop();
-        var id = $(this).attr('id');
+        var id = $(this).attr('post_id');
+        alert(id);
         var request = $.ajax({
             url: "/post/delete",
             type: "POST",
