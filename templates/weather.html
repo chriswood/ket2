@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="split">
+    <div class="evenfloatleft">
+      <table class="weather_table">
+        <tr>
+          <td>{{ co_dy.observation_time }}</td>
+          <td><img src="{{ co_dy.icon_url }}" /></td>
+        </tr>
+        <tr><td>Location:</td><td>Dyersburg, TN</td></tr>
+        <tr><td>Temp: (fahrenheit) </td><td>{{ co_dy.temp_f }}</td></tr>
+        <tr><td>relative humidity</td><td>{{ co_dy.relative_humidity }}</td></tr>
+        <tr><td>wind</td><td>{{ co_dy.wind_string }}</td></tr>
+        <tr><td>windchill</td><td>{{ co_dy.windchill_string }}</td></tr>
+      </table>
+    </div>
+    <div class="evenfloatright">
+      <table class="weather_table">
+        <tr>
+          <td>{{ co_de.observation_time }}</td>
+          <td><img src="{{ co_de.icon_url }}" /></td>
+        </tr>
+        <tr><td>Location:</td><td>Destin, FL</td></tr>
+        <tr><td>Temp: (fahrenheit) </td><td>{{ co_de.temp_f }}</td></tr>
+        <tr><td>relative humidity</td><td>{{ co_de.relative_humidity }}</td></tr>
+        <tr><td>wind</td><td>{{ co_de.wind_string }}</td></tr>
+        <tr><td>windchill</td><td>{{ co_de.windchill_string }}</td></tr>
+      </table>
+    </div>
+  </div>
+{% endblock %}

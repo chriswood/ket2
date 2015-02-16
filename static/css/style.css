@@ -51,6 +51,7 @@ input, textarea {
     height: 25px;
     line-height: 25px;
     vertical-align: bottom;
+    padding-bottom: 10px;
 }
 
 /* forms */
@@ -94,6 +95,15 @@ input, textarea {
     height: 400px;
     width: 300px
 }
+.evenfloatleft {
+    float: left;
+    width: 500px;
+}
+.evenfloatright {
+    float: right;
+    height: 400px;
+    width: 500px
+}
 .field_errors {
     color: red;
 }
@@ -125,6 +135,9 @@ input, textarea {
     padding: 8px;
     font-size: 22px;
     color: #232323; /*455779;*/
+}
+.weather_table {
+    border: 3px solid white;
 }
 
 /* tooltips */

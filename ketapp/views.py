@@ -9,6 +9,7 @@ from django.core.exceptions import PermissionDenied
 from ketapp.models import UserForm, UserEditForm, Post, PostForm
 from ket2.settings import POST_DISPLAY_LIMIT
 import json
+import urllib2
 
 
 @login_required
@@ -127,3 +128,20 @@ def post_edit(request, p_id=None):
         'p_id': p_id,
     }
     return render(request, 'ket_forms/post.html', context)
+
+@login_required
+def weather(request, location=None):
+    f1 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/TN/Dyersburg.json')
+    f2 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/FL/Destin.json')
+    json_string1 = f1.read()
+    json_string2 = f2.read()
+    parsed_json1 = json.loads(json_string1)
+    parsed_json2 = json.loads(json_string2)
+    f1.close()
+    f2.close()
+    context = {
+        'title': 'your forecast',
+        'co_dy': parsed_json1['current_observation'],
+        'co_de': parsed_json2['current_observation'],
+    }
+    return render(request, 'weather.html', context)
