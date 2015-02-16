@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% load kite_tags %}
 
 {% block body %}
 <div class="split">
@@ -6,7 +7,7 @@
       <table class="posts_container">
         {% for post in posts %}
           <tr>
-            <td class="avatar">{{ post.userid.username }}</td>
+            <td class="avatar"><img src="{{ post.userid.email|gravaturl }}">{{ post.userid.username }}</td>
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
               {{ post.message|striptags|linebreaks }}

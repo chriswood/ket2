@@ -4,8 +4,6 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
 TODO: (not prioritized, X = done)
-add saving pacman to user edit save
-view past/all posts (currently just last 10)
 take special feedback posts
 Add /feedback view listing all feedback posts
 Add growl type notifications, or something
@@ -15,12 +13,13 @@ add password edit feature
 add send someone a private message
 add send a request to admin
 add email user/users feature
-AVATARS!!!
 add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
 move anonymous check to decorator ro something
 Have homepage display list of who is logged in
 
+X - AVATARS!!! (well, GRAVATARS!!!!)
+X - view past/all posts (currently just last 10)
 X - let user edit his posts
 X - GET RID OF CDN if I'm going to use font awesome. WAY too slow
 X - add delete button to post for post owner

@@ -41,6 +41,7 @@ def user(request):
     context = {'title': 'user stuff', 'form': form}
     return render(request, 'ket_forms/user.html', context)
 
+@login_required
 def user_edit(request):
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=request.user)
