@@ -129,11 +129,12 @@ input, textarea {
     width: 100%;
     /*border-left: 20px solid transparent;*/
     border-radius: 60px 10px 60px 10px;
+    font-size: 14px;
 }
 .postheader {
     text-align: center;
     padding: 8px;
-    font-size: 22px;
+    font-size: 17px;
     color: #232323; /*455779;*/
 }
 .weather_table {

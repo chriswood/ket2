@@ -7,6 +7,6 @@ register = template.Library()
 def gravaturl(email, default='monsterid'):
     '''Return url wuth or without default'''
     param = md5(email.strip().lower()).hexdigest()
-    return "http://www.gravatar.com/avatar/{0}?d={1}&s=120".format(param, default)
+    return "http://www.gravatar.com/avatar/{0}?d={1}&s=100".format(param, default)
 
 register.filter('gravaturl', gravaturl)
