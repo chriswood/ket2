@@ -139,6 +139,7 @@ input, textarea {
 }
 .comment {
     border: 0px solid #EFF4EE;
+    vertical-align: top;
 }
 .comment_new {
     border: 0px solid #EFF4EE;

@@ -38,6 +38,10 @@ $(document).ready(function() {
             data: {postid: id, message: message},
             dataType: 'json'
         });
+        request.done(function(msg) {
+            location.reload();
+            $("#comment_" + id).children().val('')
+        });
         request.fail(function(jqXHR, textStatus) {
             alert( "Request failed: " + textStatus );
         });

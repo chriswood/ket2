@@ -23,7 +23,10 @@
               {% endifequal %}
               <hr>
               {% for c in post.comment.all %}
-                <div class='comment'>{{ c.message }}</div>
+                <div class='comment'>
+                  <img src="{{ c.userid.email|gravaturl:"40" }}">
+                  {{ c.message }}
+                </div>
               {% endfor %}
 
               {% include 'ket_forms/comment.html' %}
