@@ -21,6 +21,11 @@
                 | <a href="/post/edit/{{ post.id }}" class="tooltip edit" post_id="{{ post.id }}"><i class="fa fa-edit"></i><span>edit this post</span>
                 </a>
               {% endifequal %}
+              <hr>
+              {% for c in post.comment.all %}
+                <div class='comment'>{{ c.message }}</div>
+              {% endfor %}
+
               {% include 'ket_forms/comment.html' %}
             </td>
           </tr>

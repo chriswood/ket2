@@ -140,6 +140,9 @@ input, textarea {
 .comment {
     border: 0px solid #EFF4EE;
 }
+.comment_new {
+    border: 0px solid #EFF4EE;
+}
 .weather_table {
     border: 3px solid #EFF4EE;
 }
