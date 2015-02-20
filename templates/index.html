@@ -8,7 +8,7 @@
         {% for post in posts %}
           <tr>
             <td class="avatar">
-              <img src="{{ post.userid.email|gravaturl }}">{{ post.userid.username }}
+              <img src="{{ post.userid.email|gravaturl }}" class="round">{{ post.userid.username }}
             </td>
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
@@ -24,7 +24,8 @@
               <hr>
               {% for c in post.comment.all %}
                 <div class='comment'>
-                  <img src="{{ c.userid.email|gravaturl:"40" }}">
+                  <img src="{{ c.userid.email|gravaturl:'40' }}" class="round_small">
+                  <span class="comment_user">{{ c.userid.username }}</span>
                   {{ c.message }}
                 </div>
               {% endfor %}

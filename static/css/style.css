@@ -1,4 +1,11 @@
-
+/*
+    #B1C3C1 = light green message background
+    #232323 = black
+    #EFF4EE = white
+    #7D9B99 = darker green page background
+    #D27178 = average red of sign in header
+    #455779 = name color, nice purpley
+*/
 body {
     margin-left: auto;
     margin-right: auto;
@@ -10,6 +17,21 @@ body {
 a, h1 {
     color: #EFF4EE;
 }
+.round {
+    border: 1px solid #232323;
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -khtml-border-radius: 30px;
+    -webkit-border-radius: 30px;
+}
+.round_small {
+    border: 1px solid #232323;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
 a.delete, a.edit, a.save {color: #232323;}
 
 label {
@@ -116,9 +138,10 @@ input, textarea {
 }
 .avatar {
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     height: 150px;
-    color: #232323;
+    color: #455779;
+    font-weight: bold;
 }
 .message {
     vertical-align: top;
@@ -129,6 +152,7 @@ input, textarea {
     width: 100%;
     /*border-left: 20px solid transparent;*/
     border-radius: 60px 10px 60px 10px;
+    border: 1px solid #232323;
     font-size: 14px;
 }
 .postheader {
@@ -143,6 +167,10 @@ input, textarea {
 }
 .comment_new {
     border: 0px solid #EFF4EE;
+}
+.comment_user {
+    color: #455779;
+    font-weight: bold;
 }
 .weather_table {
     border: 3px solid #EFF4EE;
