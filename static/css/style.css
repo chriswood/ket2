@@ -10,7 +10,7 @@ body {
 a, h1 {
     color: #EFF4EE;
 }
-a.delete, a.edit {color: #232323;}
+a.delete, a.edit, a.save {color: #232323;}
 
 label {
     float: left;
@@ -137,8 +137,11 @@ input, textarea {
     font-size: 17px;
     color: #232323; /*455779;*/
 }
+.comment {
+    border: 0px solid #EFF4EE;
+}
 .weather_table {
-    border: 3px solid white;
+    border: 3px solid #EFF4EE;
 }
 
 /* tooltips */

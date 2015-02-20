@@ -4,6 +4,8 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
 TODO: (not prioritized, X = done)
+Add date to posts! maybe last edited
+Add google analytics
 take special feedback posts
 Add /feedback view listing all feedback posts
 Add growl type notifications, or something

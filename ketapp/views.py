@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from ketapp.models import UserForm, UserEditForm, Post, PostForm
+from ketapp.models import UserForm, UserEditForm, Post, PostForm, CommentForm
+from ketapp.models import Comment
 from ket2.settings import POST_DISPLAY_LIMIT
 import json
 import urllib2
@@ -21,6 +22,7 @@ def index(request, p_count=None):
         'title': 'home',
         'user': request.user.username,
         'posts': posts,
+        'form': CommentForm(auto_id=False),
     }
     return render_to_response('index.html', context,
                               context_instance=RequestContext(request))
@@ -99,6 +101,23 @@ def post_delete(request):
         return_dict = {'success': True, 'message': 'post deleted'}
     except Post.DoesNotExist:
         return_dict = {'success': False, 'message': 'post not found'}
+    json_data = json.dumps(return_dict)
+    return HttpResponse(json_data, content_type='application/javascript')
+
+@csrf_exempt
+def comment(request):
+    """ajax"""
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        print("herhffe??")
+        f = form.save(commit=False)
+        f.postid_id = request.POST['postid']
+        f.message = request.POST['message']
+        f.userid_id = request.user.id
+        f.save()
+        return_dict = {'success': True, 'message': 'comment saved'}
+    else:
+        return_dict = {'success': False, 'message': 'sumting wong'}
     json_data = json.dumps(return_dict)
     return HttpResponse(json_data, content_type='application/javascript')
 

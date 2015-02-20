@@ -1,7 +1,7 @@
 from django.db.models import CharField, EmailField, TextField, BooleanField
 from django.db.models import DateTimeField, ForeignKey, Model
 from django.core.validators import validate_email, MinValueValidator
-from django.forms import ModelForm, PasswordInput
+from django.forms import ModelForm, PasswordInput, Textarea
 from django.contrib.auth.models import User
 
 #  USE auth_users!!!!!!!!! #
@@ -43,3 +43,22 @@ class PostForm(ModelForm):
     class Meta:
         model = Post
         exclude = ['created', 'last_edited', 'userid', 'deleted']
+
+class Comment(Model):
+    postid = ForeignKey(Post, related_name='comment')
+    userid = ForeignKey(User, related_name='comment')
+    message = TextField('message', max_length=500)
+    created = DateTimeField(auto_now_add=True)
+    last_edited = DateTimeField(auto_now=True)
+    deleted = BooleanField(default=False)
+
+    class Meta:
+        db_table = 'comments'
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['message']
+        widgets = {
+          'message': Textarea(attrs={'rows': 2, 'cols': 60}),
+        }

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from ketapp.views import user, register_success, logout_view, post, user_edit
-from ketapp.views import post_delete, post_edit, weather
+from ketapp.views import post_delete, post_edit, weather, comment
 
 urlpatterns = patterns('',
     # Examples:
@@ -19,5 +19,6 @@ urlpatterns = patterns('',
     url(r'^post/delete', post_delete),
     url(r'^post/edit/(?P<p_id>\d+)/$', post_edit),
     url(r'^post/edit/$', post_edit),
+    url(r'^comment/save/$', comment),
     url(r'^weather/$', weather),
 )

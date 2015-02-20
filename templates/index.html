@@ -7,18 +7,21 @@
       <table class="posts_container">
         {% for post in posts %}
           <tr>
-            <td class="avatar"><img src="{{ post.userid.email|gravaturl }}">{{ post.userid.username }}</td>
+            <td class="avatar">
+              <img src="{{ post.userid.email|gravaturl }}">{{ post.userid.username }}
+            </td>
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
               {{ post.message|striptags|linebreaks }}
               {% ifequal user post.userid.username %}
                 <a href="#" class="tooltip delete" post_id="{{ post.id }}">
-                  <i class="fa fa-trash-o fa-fw"></i><span>delete this post</span>
+                  <i class="fa fa-trash-o"></i><span>delete this post</span>
                 </a>
                 <img height='48' width='48' src="/static/images/pacman.gif" class="loading_icon" id="loading-indicator_{{ post.id }}" style="display:none" />
                 | <a href="/post/edit/{{ post.id }}" class="tooltip edit" post_id="{{ post.id }}"><i class="fa fa-edit"></i><span>edit this post</span>
                 </a>
               {% endifequal %}
+              {% include 'ket_forms/comment.html' %}
             </td>
           </tr>
         {% endfor %}
