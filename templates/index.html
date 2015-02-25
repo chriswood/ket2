@@ -22,14 +22,6 @@
                 </a>
               {% endifequal %}
               <hr>
-              {% for c in post.comment.all %}
-                <div class='comment'>
-                  <img src="{{ c.userid.email|gravaturl:'40' }}" class="round_small">
-                  <span class="comment_user">{{ c.userid.username }}</span>
-                  {{ c.message }}
-                </div>
-              {% endfor %}
-
               {% include 'ket_forms/comment.html' %}
             </td>
           </tr>
@@ -37,11 +29,15 @@
         <tr><td colspan=2>View older posts <a href='/limit/50'>(50)</a> <a href='/limit/314159'>(all)</a></td></tr>
       </table>
     </div>
-    <div class="floatright"><p>Welcome to kiteeatingtree.org! Leave messages
-       for your family and friends, AND CHECK THE WEATHER ZOMGBBQ</p>
+    <div class="floatright"><p>Welcome to kiteeatingtree.org! </p>
+      <p>Keep up to date with
+       your family and friends. No worries of the man spyin on you, or using
+        your messages to send you ads.
+        All passwords are encrypted.</p>
 
         <p><strong>Coming Soon...</strong><br/>
-        I'm working on post comments...</p>
+        dates for posts/comments, and image uploads for posts and avatars.
+       Also different "user preferences" options, such as avatar style, etc...</p>
     </div>
 </div>
 {% endblock %}
