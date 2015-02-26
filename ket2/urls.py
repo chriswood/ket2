@@ -20,6 +20,5 @@ urlpatterns = patterns('',
     url(r'^post/edit/(?P<p_id>\d+)/$', post_edit),
     url(r'^post/edit/$', post_edit),
     url(r'^comment/save/$', comment),
-    url(r'^upload/image/$', img_upload),
     url(r'^weather/$', weather),
 )

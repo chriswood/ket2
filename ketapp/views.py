@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from ketapp.models import UserForm, UserEditForm, Post, PostForm, CommentForm
-from ketapp.models import Comment, UploadImageForm, UploadImage
+from ketapp.models import Comment
 from ket2.settings import POST_DISPLAY_LIMIT
 import json
 import urllib2
@@ -74,7 +74,7 @@ def post(request):
         return HttpResponseRedirect('/login')
     #cur_user = User.objects.get(id=2)
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit=False)
             f.userid_id = cur_user.id

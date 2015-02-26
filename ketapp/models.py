@@ -36,11 +36,16 @@ class Post(Model):
     created = DateTimeField(auto_now_add=True)
     last_edited = DateTimeField(auto_now=True)
     deleted = BooleanField(default=False)
+    photo = ImageField(null=True, blank=True)
 
     class Meta:
         db_table = 'posts'
 
 class PostForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.fields['photo'].label = 'image (optional)'
+        
     class Meta:
         model = Post
         exclude = ['created', 'last_edited', 'userid', 'deleted']
@@ -62,21 +67,4 @@ class CommentForm(forms.ModelForm):
         fields = ['message']
         widgets = {
           'message': forms.Textarea(attrs={'rows': 2, 'cols': 60}),
-        }
-
-class UploadImage(Model):
-    userid = ForeignKey(User, related_name='images')
-    title = CharField(max_length=50, null=True, blank=True)
-    message = TextField('message', max_length=500, null=True, blank=True)
-    photo = ImageField(null=False, blank=False)
-
-    class Meta:
-        db_table = 'images'
-
-class UploadImageForm(forms.ModelForm):
-    class Meta:
-        model = UploadImage
-        exclude = ['userid']
-        widgets = {
-            'message': forms.Textarea(attrs={'rows': 2, 'cols': 60}),
         }
