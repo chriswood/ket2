@@ -92,6 +92,8 @@ LOGIN_REDIRECT_URL = '/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+MEDIA_ROOT = os.environ['media_path']
+MEDIA_URL = 'http://media.kiteeatingtree.org/'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
@@ -111,5 +113,3 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 # Number to display by default
 POST_DISPLAY_LIMIT = 10
-
-

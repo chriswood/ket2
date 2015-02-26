@@ -17,8 +17,10 @@ add send a request to admin
 add email user/users feature
 add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
-move anonymous check to decorator ro something
+move anonymous check to decorator or something
 Have homepage display list of who is logged in
+notifications
+User preferences - default post sorting, notifications
 
 X - AVATARS!!! (well, GRAVATARS!!!!)
 X - view past/all posts (currently just last 10)

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="form">
+  <form enctype="multipart/form-data" action="/upload/image/" method="post">
+    <table class="form">
+      {% csrf_token %}
+      {% for field in form %}
+        <tr><th class="form_labels">{{ field.label_tag }}</th><td>{{ field }} {{ field.errors }}</td></tr>
+      {% endfor %}
+      <tr><td colspan="2"><input type="submit" value="upload" /></td></tr>
+    </table>
+  </form>
+</div>
+{% endblock %}
