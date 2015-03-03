@@ -13,6 +13,11 @@
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
               {{ post.message|striptags|linebreaks }}
+              {% if post.photo %}
+                  <div class="post_image">
+                    <img src="{{ post.photo|imgurl }}" height="{{ post.photo_height }}" width="{{ post.photo_height }}"/>
+                  </div>
+              {% endif %}
               {% ifequal user post.userid.username %}
                 <a href="#" class="tooltip delete" post_id="{{ post.id }}">
                   <i class="fa fa-trash-o"></i><span>delete this post</span>

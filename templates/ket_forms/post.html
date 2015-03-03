@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="form">
-  <form action="/post/{{ verb }}/" method="post">
+  <form enctype='multipart/form-data' action="/post/{{ verb }}/" method="post">
     <table class="form">
       {% csrf_token %}
       {% if verb == 'edit' %}

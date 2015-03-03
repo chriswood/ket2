@@ -1,6 +1,8 @@
 from django.db.models import CharField, EmailField, TextField, BooleanField
 from django.db.models import DateTimeField, ForeignKey, Model, ImageField
+from django.db.models.signals import post_delete
 from django.core.validators import validate_email, MinValueValidator
+from django.dispatch import receiver
 from django import forms
 from django.contrib.auth.models import User
 from ket2.settings import MEDIA_ROOT
@@ -35,8 +37,9 @@ class Post(Model):
     message = TextField('message', max_length=500)
     created = DateTimeField(auto_now_add=True)
     last_edited = DateTimeField(auto_now=True)
-    deleted = BooleanField(default=False)
-    photo = ImageField(null=True, blank=True)
+    photo = ImageField(null=True, blank=True, height_field='photo_height')
+    photo_height = CharField(blank=True, null=True, max_length=10)
+    photo_width = CharField(blank=True, null=True, max_length=10)
 
     class Meta:
         db_table = 'posts'
@@ -45,10 +48,18 @@ class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['photo'].label = 'image (optional)'
-        
+
     class Meta:
         model = Post
-        exclude = ['created', 'last_edited', 'userid', 'deleted']
+        exclude = ['created', 'last_edited', 'userid',\
+                   'photo_height', 'photo_width']
+
+@receiver(post_delete, sender=Post)
+def photo_post_delete_handler(sender, **kwargs):
+    print("here??")
+    photo = kwargs['instance']
+    storage, path = photo.photo.storage, photo.photo.path
+    storage.delete(path)
 
 class Comment(Model):
     postid = ForeignKey(Post, related_name='comment')

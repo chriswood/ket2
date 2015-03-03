@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from ketapp.views import user, register_success, logout_view, post, user_edit
 from ketapp.views import post_delete, post_edit, weather, comment, img_upload
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = patterns('',
     # Examples:
@@ -21,4 +23,4 @@ urlpatterns = patterns('',
     url(r'^post/edit/$', post_edit),
     url(r'^comment/save/$', comment),
     url(r'^weather/$', weather),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
