@@ -1,31 +1,67 @@
-from PIL import Image
-from cStringIO import StringIO
-from django.core.files.base import ContentFile
+import StringIO
+from PIL import Image, ImageOps
+import os
+from django.core.files import File
+import hashlib
 
-def handle_image(image_file):
-    #img_path = MEDIA_URL+image.name
-    # im = Image.open(image_file)
-    # print(im.size)
-    return image_file
-    # (width, height) = im.size
-    # (width, height) = (50,50)
-    # new_im = im.resize((width, height))
-    # new_im_file = StringIO()
-    # new_im.save(new_im_file, 'jpeg', optimize = True)
-    # new_im_file.seek(0)
-    # return ContentFile(new_im_file)
+def handle_uploaded_image(i):
+    # read image from InMemoryUploadedFile
+    image_str = ''
+    for c in i.chunks():
+        image_str += c
 
-def roll(image, delta):
-    "Roll an image sideways"
+    # create PIL Image instance
+    imagefile  = StringIO.StringIO(image_str)
+    image = Image.open(imagefile)
 
-    xsize, ysize = image.size
+    # if not RGB, convert
+    if image.mode not in ('L', 'RGB'):
+        image = image.convert('RGB')
 
-    delta = delta % xsize
-    if delta == 0: return image
+    #define file output dimensions (ex 60x60)
+    x = 400
+    y = 400
 
-    part1 = image.crop((0, 0, delta, ysize))
-    part2 = image.crop((delta, 0, xsize, ysize))
-    image.paste(part2, (0, 0, xsize-delta, ysize))
-    image.paste(part1, (xsize-delta, 0, xsize, ysize))
+    #get orginal image ratio
+    img_ratio = float(image.size[0]) / image.size[1]
 
-    return image
+    # resize but constrain proportions?
+    if x==0.0:
+        x = y * img_ratio
+    elif y==0.0:
+        y = x / img_ratio
+
+    # output file ratio
+    resize_ratio = float(x) / y
+    x = int(x); y = int(y)
+
+    # get output with and height to do the first crop
+    if(img_ratio > resize_ratio):
+        output_width = x * image.size[1] / y
+        output_height = image.size[1]
+        originX = image.size[0] / 2 - output_width / 2
+        originY = 0
+    else:
+        output_width = image.size[0]
+        output_height = y * image.size[0] / x
+        originX = 0
+        originY = image.size[1] / 2 - output_height / 2
+
+    #crop
+    cropBox = (originX, originY, originX + output_width, originY + output_height)
+    image = image.crop(cropBox)
+
+    # resize (doing a thumb)
+    image.thumbnail([x, y], Image.ANTIALIAS)
+
+    # re-initialize imageFile and set a hash (unique filename)
+    imagefile = StringIO.StringIO()
+    filename = hashlib.md5(i.name.encode("utf8")).hexdigest()+'.jpg'
+
+    #save to disk
+    imagefile = open(os.path.join('/tmp',filename), 'w')
+    image.save(imagefile,'JPEG', quality=90)
+    imagefile = open(os.path.join('/tmp',filename), 'r')
+    content = File(imagefile)
+
+    return (filename, content)

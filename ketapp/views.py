@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
 from django.template import RequestContext
@@ -10,7 +11,7 @@ from django.core.files.base import ContentFile
 from ketapp.models import UserForm, UserEditForm, Post, PostForm, CommentForm
 from ketapp.models import Comment
 from ket2.settings import POST_DISPLAY_LIMIT
-from ket2.utils import handle_image, roll
+from ket2.utils import handle_uploaded_image
 import json
 import urllib2
 
@@ -76,18 +77,14 @@ def post(request):
         return HttpResponseRedirect('/login')
     #cur_user = User.objects.get(id=2)
     if request.method == 'POST':
-        request.FILES['photo']=handle_image(request.FILES['photo'])
         form = PostForm(request.POST, request.FILES)
-
         if form.is_valid():
-            f = form.save(commit=False)
-            f.userid_id = cur_user.id
-            # if request.FILES:
-            #     handle_image(request.FILES['photo'])
-            # instance = Post(photo=request.FILES['photo'], userid_id=cur_user.id)
-            # instance.save()
-            f.save()
+            ob = form.save(commit=False)
+            ob.userid_id = cur_user.id
+            t = handle_uploaded_image(request.FILES['photo'])
+            ob.photo.save(t[0],t[1])
             return HttpResponseRedirect('/')
+
     else:
         form = PostForm()
     context = {
