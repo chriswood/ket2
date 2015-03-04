@@ -56,10 +56,10 @@ class PostForm(forms.ModelForm):
 
 @receiver(post_delete, sender=Post)
 def photo_post_delete_handler(sender, **kwargs):
-    print("here??")
-    photo = kwargs['instance']
-    storage, path = photo.photo.storage, photo.photo.path
-    storage.delete(path)
+        post = kwargs['instance']
+        if post.photo:
+            storage, path = post.photo.storage, post.photo.path
+            storage.delete(path)
 
 class Comment(Model):
     postid = ForeignKey(Post, related_name='comment')

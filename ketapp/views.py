@@ -79,10 +79,12 @@ def post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            ob = form.save(commit=False)
-            ob.userid_id = cur_user.id
-            t = handle_uploaded_image(request.FILES['photo'])
-            ob.photo.save(t[0],t[1])
+            instance = form.save(commit=False)
+            instance.userid_id = cur_user.id
+            if request.FILES and 'photo' in request.FILES:
+                filename, content = handle_uploaded_image(request.FILES['photo'])
+                instance.photo.save(filename, content)
+            instance.save()
             return HttpResponseRedirect('/')
 
     else:
@@ -104,7 +106,6 @@ def post_delete(request):
     try:
         obj = Post.objects.get(id=post_id)
         obj.delete()
-        #obj.save()
         return_dict = {'success': True, 'message': 'post deleted'}
     except Post.DoesNotExist:
         return_dict = {'success': False, 'message': 'post not found'}
