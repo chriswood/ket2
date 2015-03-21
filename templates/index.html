@@ -12,6 +12,7 @@
             </td>
             <td class="message">
               <div class='postheader'>{{ post.title }}</div>
+              <div class='postdate'>{{ post.created|date }} at {{ post.created|time }}</div>
               {{ post.message|striptags|linebreaks }}
               {% if post.photo %}
                   <div class="post_image">
@@ -37,11 +38,10 @@
     <div class="floatright"><p>Welcome to kiteeatingtree.org! </p>
       <p>Keep up to date with
        your family and friends. No worries of the man spyin on you, or using
-        your messages to send you ads.
-        All passwords are encrypted.</p>
+        your messages to send you ads.</p>
 
         <p><strong>Coming Soon...</strong><br/>
-        dates for posts/comments, and image uploads for posts and avatars.
+        dates for posts/comments, and image uploads for avatars.
        Also different "user preferences" options, such as avatar style, etc...</p>
     </div>
 </div>

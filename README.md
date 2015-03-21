@@ -4,13 +4,11 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
 TODO: (not prioritized, X = done)
-Add date to posts! maybe last edited
 Add google analytics
 take special feedback posts
 Add /feedback view listing all feedback posts
 Add growl type notifications, or something
 display posts per user
-implement picture sharing
 add password edit feature
 add send someone a private message
 add send a request to admin
@@ -22,6 +20,8 @@ Have homepage display list of who is logged in
 notifications
 User preferences - default post sorting, notifications
 
+X- Add date to posts. maybe last edited
+X- implement picture sharing
 X - AVATARS!!! (well, GRAVATARS!!!!)
 X - view past/all posts (currently just last 10)
 X - let user edit his posts
