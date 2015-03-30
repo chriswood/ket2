@@ -176,15 +176,25 @@ def img_upload(request):
 def weather(request, location=None):
     f1 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/TN/Dyersburg.json')
     f2 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/FL/Destin.json')
+    f3 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/TN/Memphis.json')
+    f3 = urllib2.urlopen('http://api.wunderground.com/api/cc79222c4e1f495c/geolookup/conditions/q/FL/Niceville.json')
     json_string1 = f1.read()
     json_string2 = f2.read()
+    json_string3 = f3.read()
+    json_string4 = f4.read()
     parsed_json1 = json.loads(json_string1)
     parsed_json2 = json.loads(json_string2)
+    parsed_json3 = json.loads(json_string3)
+    parsed_json4 = json.loads(json_string4)
     f1.close()
     f2.close()
+    f3.close()
+    f4.close()
     context = {
         'title': 'your forecast',
         'co_dy': parsed_json1['current_observation'],
         'co_de': parsed_json2['current_observation'],
+        'co_me': parsed_json3['current_observation'],
+        'co_ni': parsed_json4['current_observation'],
     }
     return render(request, 'weather.html', context)

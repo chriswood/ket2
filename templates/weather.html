@@ -14,6 +14,17 @@
         <tr><td>wind</td><td>{{ co_dy.wind_string }}</td></tr>
         <tr><td>windchill</td><td>{{ co_dy.windchill_string }}</td></tr>
       </table>
+      <table class="weather_table">
+        <tr>
+          <td>{{ co_me.observation_time }}</td>
+          <td><img src="{{ co_dy.icon_url }}" /></td>
+        </tr>
+        <tr><td>Location:</td><td>Ricky Hall's House (Memphis)</td></tr>
+        <tr><td>Temp: (fahrenheit) </td><td>{{ co_me.temp_f }}</td></tr>
+        <tr><td>relative humidity</td><td>{{ co_me.relative_humidity }}</td></tr>
+        <tr><td>wind</td><td>{{ co_me.wind_string }}</td></tr>
+        <tr><td>windchill</td><td>{{ co_me.windchill_string }}</td></tr>
+      </table>
     </div>
     <div class="evenfloatright">
       <table class="weather_table">
@@ -26,6 +37,17 @@
         <tr><td>relative humidity</td><td>{{ co_de.relative_humidity }}</td></tr>
         <tr><td>wind</td><td>{{ co_de.wind_string }}</td></tr>
         <tr><td>windchill</td><td>{{ co_de.windchill_string }}</td></tr>
+      </table>
+      <table class="weather_table">
+        <tr>
+          <td>{{ co_ni.observation_time }}</td>
+          <td><img src="{{ co_de.icon_url }}" /></td>
+        </tr>
+        <tr><td>Location:</td><td>Niceville, FL</td></tr>
+        <tr><td>Temp: (fahrenheit) </td><td>{{ co_ni.temp_f }}</td></tr>
+        <tr><td>relative humidity</td><td>{{ co_ni.relative_humidity }}</td></tr>
+        <tr><td>wind</td><td>{{ co_ni.wind_string }}</td></tr>
+        <tr><td>windchill</td><td>{{ co_ni.windchill_string }}</td></tr>
       </table>
     </div>
   </div>

@@ -4,6 +4,7 @@ I'm re-writing kiteeatingtree.org using django rather than flask. I found myself
 kiteeatingtree.org is a website I'm getting going to share things with family and friends and allow them to do the same.
 
 TODO: (not prioritized, X = done)
+Make sure cropping isn't f'ing up pictures
 Add google analytics
 take special feedback posts
 Add /feedback view listing all feedback posts
@@ -13,13 +14,13 @@ add password edit feature
 add send someone a private message
 add send a request to admin
 add email user/users feature
-add "conversations" or replies to posts ot something
 probably better add tests, even though it is "just" a website :)
 move anonymous check to decorator or something
 Have homepage display list of who is logged in
 notifications
 User preferences - default post sorting, notifications
 
+X - add "conversations" or replies to posts ot something
 X- Add date to posts. maybe last edited
 X- implement picture sharing
 X - AVATARS!!! (well, GRAVATARS!!!!)
